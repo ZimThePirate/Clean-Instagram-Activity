@@ -14,9 +14,8 @@
     // ==============================
     // ⏱️ CONFIGURABLE DELAYS
     // ==============================
-    const DELAY_CLICK = 100;     // between item clicks
-    const DELAY_SCROLL = 300;    // after scrolling
-    const DELAY_UNLIKE = 100;    // wait before confirming unlike
+    const DELAY_CLICK = 300;     // between item clicks
+    const DELAY_UNLIKE = 300;    // wait before confirming unlike
     const LOOP_INTERVAL = 10000; // restart safety interval
 
     // Step 0: Click the "Select" button if available
@@ -35,13 +34,13 @@
     }
 
     function clickNext() {
-        // Step 1: Check if 50 are already selected
+        // Step 1: Check if 30 are already selected
         let selectedSpan = document.querySelector(SELECTED_COUNT_SELECTOR);
 
         if (selectedSpan) {
             let selectedCount = parseInt(selectedSpan.textContent) || 0;
-            if (selectedCount >= 70) {
-                console.log("🛑 80 items selected, attempting to unlike...");
+            if (selectedCount >= 30) {
+                console.log("🛑 30 items selected, attempting to unlike...");
                 let unlikeDiv = document.querySelector(UNLIKE_TEXT_SELECTOR);
 
                 if (unlikeDiv) {
@@ -66,9 +65,7 @@
         let btn = container.querySelector(`${SELECTABLE_BTN_SELECTOR}:not(.clicked)`);
 
         if (!btn) {
-            console.log("⬇️ Scrolling for more items...");
-            container.scrollBy(0, container.clientHeight);
-            setTimeout(clickNext, DELAY_SCROLL);
+            console.log("✅ No more selectable items found in current view");
             return;
         }
 
